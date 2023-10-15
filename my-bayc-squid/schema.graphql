@@ -1,0 +1,28 @@
+ type Transfer @entity {
+     id: ID!
+     token: Token!
+     from: Owner!
+     to: Owner!
+     timestamp: DateTime!
+     blockNumber: Int!
+     txHash: String! @index
+ }
+
+type Owner @entity {
+    id: ID! 
+}
+
+type Token @entity {
+    id: ID! 
+    tokenId: BigInt!
+    +    owner: Owner!
+}
+
+let newOwner: Owner = new Owner({
+    id: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
+})
+let newToken: Token = new Token({
+    id: '1',
+    tokenId: 1,
+    owner: newOwner 
+})
